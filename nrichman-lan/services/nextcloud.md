@@ -2,7 +2,7 @@
 title: Nextcloud
 description: 
 published: true
-date: 2020-01-22T04:46:27.108Z
+date: 2020-01-22T05:47:46.504Z
 tags: 
 ---
 
