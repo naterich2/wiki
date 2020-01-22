@@ -2,7 +2,7 @@
 title: nrichman.lan
 description: 
 published: true
-date: 2020-01-22T16:14:57.166Z
+date: 2020-01-22T16:15:49.618Z
 tags: 
 ---
 
@@ -12,7 +12,7 @@ tags:
 {.links-list}
 
 ## Services and Ansible
-- [Ansible Overview](/nrichman-lan/services/ansible)
+- [Ansible Overview](/nrichman-lan/services/ansible-overview)
 - [Keycloak](/nrichman-lan/services/keycloak)
 - [Nextcloud](/nrichman-lan/services/nextcloud)
 - [Freeradius](/nrichman-lan/services/freeradius)
