@@ -2,7 +2,7 @@
 title: nrichman.lan
 description: 
 published: true
-date: 2020-01-22T16:15:49.618Z
+date: 2020-05-31T01:17:40.712Z
 tags: 
 ---
 
@@ -16,6 +16,7 @@ tags:
 - [Keycloak](/nrichman-lan/services/keycloak)
 - [Nextcloud](/nrichman-lan/services/nextcloud)
 - [Freeradius](/nrichman-lan/services/freeradius)
+- [Gitea](/nrichman-lan/services/Gitea)
 {.links-list}
 
 ## Web Hosting
