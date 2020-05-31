@@ -2,7 +2,7 @@
 title: nrichman.lan
 description: 
 published: true
-date: 2020-05-31T01:19:54.893Z
+date: 2020-05-31T15:16:47.942Z
 tags: 
 ---
 
@@ -12,15 +12,10 @@ tags:
 {.links-list}
 
 ## Services and Ansible
-- [Ansible Overview](/services/ansible-overview)
-- [Keycloak](/nrichman-lan/services/keycloak)
-- [Nextcloud](/nrichman-lan/services/nextcloud)
-- [Freeradius](/nrichman-lan/services/freeradius)
-- [Gitea](/nrichman-lan/services/Gitea)
+- [Services and Ansible](/nrichman-lan/services)
+
 {.links-list}
 
 ## Web Hosting
-- [Dynamic DNS update client for Cloudflare](/nrichman-lan/web/dynamic-dns)
-- [NGINX reverse proxy](/nrichman-lan/web/nginx)
-- [Deploying nrichman.dev (Node App)](/nrichman-lan/web/nrichman-dev)
+- [Web hosting](/nrichman-lan/web)
 {.links-list}
