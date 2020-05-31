@@ -2,7 +2,7 @@
 title: Pulsatile Flow
 description: 
 published: true
-date: 2020-05-31T20:42:41.757Z
+date: 2020-05-31T20:48:10.304Z
 tags: python, simulation
 ---
 
@@ -24,7 +24,7 @@ tags: python, simulation
  #### Methods
 
  ##### Models
-    ![](figures/Fluid_flow.png)
+![fluid_flow.png](/fluid_flow.png)
     
  **Figure 1:** Fluid flow in a tube, velocity in the z-direction is a function of $r$ and $t$, driven by the pressure gradient between $p_1(t)$ and $p_2(t)$
 
