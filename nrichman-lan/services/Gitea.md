@@ -2,7 +2,7 @@
 title: Gitea
 description: Description of my gitea instance
 published: true
-date: 2020-05-31T01:12:23.110Z
+date: 2020-05-31T01:12:49.627Z
 tags: 
 ---
 
@@ -108,7 +108,7 @@ SELECT id,name,template_id FROM repository;
 ```
 
 mysql:
-```
+```sql
 SELECT id,name,template_id FROM repository;
 +------+-------------------+-------------+
 | id   | name              | template_id |
