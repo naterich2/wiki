@@ -2,7 +2,7 @@
 title: Gitea
 description: Description of my gitea instance
 published: true
-date: 2020-05-31T01:12:49.627Z
+date: 2020-05-31T01:12:50.919Z
 tags: 
 ---
 

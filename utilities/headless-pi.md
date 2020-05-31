@@ -2,7 +2,7 @@
 title: Headless Raspberry Pi and Pi-Hole
 description: 
 published: true
-date: 2020-01-22T16:04:08.830Z
+date: 2020-01-22T16:04:10.135Z
 tags: 
 ---
 
