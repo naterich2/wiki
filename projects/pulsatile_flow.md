@@ -1,13 +1,14 @@
- 
 ---
 title: Pulsatile Flow
 description: 
 published: true
-date: 2020-05-31T20:21:27.930Z
+date: 2020-05-31T20:42:03.324Z
 tags: 
 ---
 
-#Steady, Osillatory, and Pulsatile Flow in a Rigid Tube
+
+
+# Steady, Osillatory, and Pulsatile Flow in a Rigid Tube
 
  #### By Nathan Richman
 
@@ -18,39 +19,55 @@ tags:
 
  Arteries can be approximated by tubes of various sizes.  Pulmonary arteries can vary from ~.3cm to 1.5cm in diameter [1].  Arteries are surrounded by elastin, a protein which gives the artery elastic properties and stiffens with age [2].  While arteries are elastic, the model for arterial flow is much simpler assuming the artery is a rigid tube.  Additionally, arteries can't necessarily be represented as tubes due to the many bifurcations and changes in shape [3]. Thus fluid flow in arteries is mostly determined with a combination of flow data from ultrasound or MRI, and computational analysis.
 
- Additionally, blood is a non-newtonian fluid that is best represented by the Casson model: $ \sqrt{\tau} = \sqrt{\mu} \sqrt{\gamma} + \sqrt{\tau_0}$ which relates shear stress, $\tau$ to shear rate $\gamma$.  This model describes blood as a shear-thinning (meaning it becomes less viscous at high shear rates) fluid that takes a certain shear stress $\tau_0$ to initially deform. However, for this analysis, I will assume the fluid is newtonian ($\tau_{xy} = 2 \mu \frac{1}{2}\left(\gamma_{xy} + \gamma{yx}\right) $) with a constant viscosity of 4 cP, and constant density of 1.06 $g/cm^3$
+ Additionally, blood is a non-newtonian fluid that is best represented by the Casson model: $ \sqrt{\tau} = \sqrt{\mu} \sqrt{\gamma} + \sqrt{\tau_0}$ which relates shear stress, $\tau$ to shear rate $\gamma$.  This model describes blood as a shear-thinning (meaning it becomes less viscous at high shear rates) fluid that takes a certain shear stress $\tau_0$ to initially deform. However, for this analysis, I will assume the fluid is newtonian, ( $\tau_{xy} = 2 \mu \frac{1}{2}\left(\gamma_{xy} + \gamma{yx}\right)$ ) with a constant viscosity of 4 cP, and constant density of 1.06 $g/cm^3$
 
  #### Methods
 
  ##### Models
-    <img src="figures/Fluid_flow.png" style="display:block; margin-left:auto; margin-right:auto">
+    ![](figures/Fluid_flow.png)
+    
  **Figure 1:** Fluid flow in a tube, velocity in the z-direction is a function of $r$ and $t$, driven by the pressure gradient between $p_1(t)$ and $p_2(t)$
 
  ###### Steady
- For steady flow, we can assume velocity is only in the z-direction and only a function of radius, and pressure is only a function of z.  Similarly we can assume the radial and angular velocity are both 0, and that gravity in the z-direction is 0.  With these assumptions, the z-component of Navier-Stokes equations reduces to the following: $$ 0 = -     \frac{d p}{dz} + \mu \left( \frac{1}{r}     \frac{d }{d r} \left(r     \frac{d v_z}{d r}\right)\right)$$
-Solving this with the boundary conditions that the shear has to be finite in the middle of the tube, and the velocity at the surface of the tube is zero, we get the following velocity profile: $$v_z = \frac{a^2}{4 \mu}     \left( -\frac{d p}{dz}\right) \left( 1 - \left(\frac{r}{a}\right)^2\right)$$
-We can then integrate over the cross-sectional area to get the volumetric flowrate: $$Q = \frac{\pi a^4}{8 \mu} \left(-\frac{d p}{d z}\right)$$ and find the shear stress from the derivative of the velocity profile: $$\tau_{rz} = -\frac{a}{2} \left(-\frac{d p}{d z}\right)$$
+ For steady flow, we can assume velocity is only in the z-direction and only a function of radius, and pressure is only a function of z.  Similarly we can assume the radial and angular velocity are both 0, and that gravity in the z-direction is 0.  With these assumptions, the z-component of Navier-Stokes equations reduces to the following: 
+ $$ 0 = -     \frac{d p}{dz} + \mu \left( \frac{1}{r}     \frac{d }{d r} \left(r     \frac{d v_z}{d r}\right)\right)$$
+Solving this with the boundary conditions that the shear has to be finite in the middle of the tube, and the velocity at the surface of the tube is zero, we get the following velocity profile: 
+$$v_z = \frac{a^2}{4 \mu}     \left( -\frac{d p}{dz}\right) \left( 1 - \left(\frac{r}{a}\right)^2\right)$$
+We can then integrate over the cross-sectional area to get the volumetric flowrate: 
+$$Q = \frac{\pi a^4}{8 \mu} \left(-\frac{d p}{d z}\right)$$ 
+and find the shear stress from the derivative of the velocity profile: 
+$$\tau_{rz} = -\frac{a}{2} \left(-\frac{d p}{d z}\right)$$
  A detailed solution of these equations can be found in Appendix II.
  ###### Oscillatory
- For oscillatory flow, we can assume that velocity is only in the z-direction, and a function of radius and time only.  Additionally, we can assume that radial and angular velocity are both 0, and that gravity in the z-direction is 0.  Under these conditions, the z-component of the Navier-Stokes equations simplify to the following: $$\rho \frac{\partial v_z}{\partial t}  = -     \frac{\partial p}{\partial z} + \mu \left[    \frac{1}{r}\frac{\partial}{\partial r}\left(r     \frac{\partial v_z}{\partial r}\right)\right]$$
+ For oscillatory flow, we can assume that velocity is only in the z-direction, and a function of radius and time only.  Additionally, we can assume that radial and angular velocity are both 0, and that gravity in the z-direction is 0.  Under these conditions, the z-component of the Navier-Stokes equations simplify to the following: 
+ $$\rho \frac{\partial v_z}{\partial t}  = -     \frac{\partial p}{\partial z} + \mu \left[    \frac{1}{r}\frac{\partial}{\partial r}\left(r     \frac{\partial v_z}{\partial r}\right)\right]$$
 
- By assuming a pressure form of $\frac{\partial p}{\partial z} = -p_0 e^{i n \omega t}$ and assuming that velocity follows a similar form (v_z(r,t) = V_s(r)\left(-p_0 e^{i n \omega t}\right)), we can perform a separation of variables as well as dimensional analysis to end up with the Bessel differential equation: $$0 = \zeta^2 \frac{d^2 V(\zeta)}{d \zeta^2} + \zeta\frac{d V(\zeta)}{d \zeta} +  (\zeta^2 - \alpha^2) V(\zeta)  \textrm{, Where $\alpha = 0$}$$
+ By assuming a pressure form of $\frac{\partial p}{\partial z} = -p_0 e^{i n \omega t}$ and assuming that velocity follows a similar form (v_z(r,t) = V_s(r)\left(-p_0 e^{i n \omega t}\right)), we can perform a separation of variables as well as dimensional analysis to end up with the Bessel differential equation: 
+ $$0 = \zeta^2 \frac{d^2 V(\zeta)}{d \zeta^2} + \zeta\frac{d V(\zeta)}{d \zeta} +  (\zeta^2 - \alpha^2) V(\zeta)  \textrm{, Where $\alpha = 0$}$$
 
- This can be solved with the boundary conditions that the flow be finite at the center (r = 0) and that it be zero at the wall (r = a): $$v_z^n(\zeta,t) = \frac{i p_o a^2}{ \mu \Omega_n^2 } \left( 1 - \frac{J_0(\zeta)}{J_0(\Lambda_n)}\right) e^{i n \omega t}$$
+ This can be solved with the boundary conditions that the flow be finite at the center (r = 0) and that it be zero at the wall (r = a): 
+ $$v_z^n(\zeta,t) = \frac{i p_o a^2}{ \mu \Omega_n^2 } \left( 1 - \frac{J_0(\zeta)}{J_0(\Lambda_n)}\right) e^{i n \omega t}$$
 
-where $i$ is the imaginary unit, $\Omega_n$ is the Womersley number, defined as $\Omega_n = a \sqrt{\frac{\rho n \omega}{\mu}}$, $\Lambda_n = \left(\frac{i - 1}{\sqrt{2}}\right) \Omega_n$, $\zeta = \Lambda_n\frac{r}{a}$, $J_0$ is the zero-order Bessel function of the first kind, and $n$ is the harmonic.  We can then integrate this again over the cross-sectional area to get the volumetric flow rate: $$ Q = \frac{\pi p_o a^4}{\mu \Omega_n^2} \left(1 - \frac{2 J_1(\Lambda_n)}{\Lambda_n J_0(\Lambda_n)}\right)e^{i n \omega t}$$
+where $i$ is the imaginary unit, $\Omega_n$ is the Womersley number, defined as $\Omega_n = a \sqrt{\frac{\rho n \omega}{\mu}}$, $\Lambda_n = \left(\frac{i - 1}{\sqrt{2}}\right) \Omega_n$, $\zeta = \Lambda_n\frac{r}{a}$, $J_0$ is the zero-order Bessel function of the first kind, and $n$ is the harmonic.  We can then integrate this again over the cross-sectional area to get the volumetric flow rate: 
+$$ Q = \frac{\pi p_o a^4}{\mu \Omega_n^2} \left(1 - \frac{2 J_1(\Lambda_n)}{\Lambda_n J_0(\Lambda_n)}\right)e^{i n \omega t}$$
 
- And we can also use the derivative of the velocity profile to again get the shear stress:  $$ \tau_rz = -\frac{p_o a}{\Lambda_n}\left(\frac{J_1(\Lambda_n)}{J_0(\Lambda_n)} \right) e^{i n \omega t}$$
+ And we can also use the derivative of the velocity profile to again get the shear stress:  
+ $$ \tau_rz = -\frac{p_o a}{\Lambda_n}\left(\frac{J_1(\Lambda_n)}{J_0(\Lambda_n)} \right) e^{i n \omega t}$$
 
 Detailed solutions of these equations are also in Appendix II
 
  ###### Pulsatile
- Pulsatile is then the linear combination of the steady and oscillatory profiles, giving the following velocity: $$ v_z(\psi,t) = \frac{a^2}{4 \mu}     \left( C\right) \left( 1 - \psi^2\right) + \Re \left(D \sum_{n=1}^N \frac{i  C_n a^2}{ \mu \Omega_n^2 } \left( 1 - \frac{J_0(\Lambda_n \psi)}{J_0(\Lambda_n)}\right) e^{i (n \omega t - \Phi_n)}\right)$$ where $\psi = \frac{r}{a}$ when driven with a pressure wave:
+ Pulsatile is then the linear combination of the steady and oscillatory profiles, giving the following velocity: 
+ $$ v_z(\psi,t) = \frac{a^2}{4 \mu}     \left( C\right) \left( 1 - \psi^2\right) + \Re \left(D \sum_{n=1}^N \frac{i  C_n a^2}{ \mu \Omega_n^2 } \left( 1 - \frac{J_0(\Lambda_n \psi)}{J_0(\Lambda_n)}\right) e^{i (n \omega t - \Phi_n)}\right)$$
+ where $\psi = \frac{r}{a}$ when driven with a pressure wave:
+
 $$\frac{d p}{d z} = -C - D \sum_{n=1}^N C_n \cos(\frac{2 n \pi t}{T}+ \Phi_n)$$
 
- The volumetric flow rate can then be calculated similarly to above: $$ Q = \frac{\pi C a^4}{8 \mu} + \Re \left(D \sum_{n=1}^N \frac{\pi  C_n a^4}{\mu \Omega_n^2}\left(1 - \frac{2 J_1(\Lambda_n)}{\Lambda_n J_0(\Lambda_n)}\right)e^{i(n \omega t - \Phi_n)} \right)$$
+ The volumetric flow rate can then be calculated similarly to above: 
+ $$ Q = \frac{\pi C a^4}{8 \mu} + \Re \left(D \sum_{n=1}^N \frac{\pi  C_n a^4}{\mu \Omega_n^2}\left(1 - \frac{2 J_1(\Lambda_n)}{\Lambda_n J_0(\Lambda_n)}\right)e^{i(n \omega t - \Phi_n)} \right)$$
 
- And similarly, the wall shear stress: $$ \tau_{rz} =C\frac{a}{2} +  \Re \left(D \sum_{n=1}^N \frac{ C_n a}{\Lambda_n} \frac{J_1(\Lambda_n)}{J_0(\Lambda_n)}e^{i(n \omega t - \Phi_n)}\right)$$
+ And similarly, the wall shear stress: 
+ $$ \tau_{rz} =C\frac{a}{2} +  \Re \left(D \sum_{n=1}^N \frac{ C_n a}{\Lambda_n} \frac{J_1(\Lambda_n)}{J_0(\Lambda_n)}e^{i(n \omega t - \Phi_n)}\right)$$
 
  ##### Simulation
  The simulation was done using python and the packages scipy, numpy, and matplotlib.  The main goal of the simulation was to visualize the flow in real time, as well as determine the relative effects of inertial and viscous effects in pulsatile flow which show up in the Reynolds number and Womersley number.
@@ -81,12 +98,12 @@ umax2 = flow_steady(a,mu,rho,dp_dz,ax[:,1],r'$-\frac{d p}{d z} = 100 \ dynes/cm^
  **Figure 1:** Steady flow velocity, shear, and volumetric flow rate for a pressure gradient of 46 $dyne/cm^3$ and radius 0.65 $cm$ (left). Pressure gradient of 100 $dyne/cm^2$ and a radius of 0.3  $cm$ (right).
 
 **Table 1:** Table of Reynolds numbers for the two conditions shown in Figure 1.  The first condition has a much larger Reynolds number since the radius of the pipe is larger allowing a faster maximum velocity.
- $$\newcommand\T{\Rule{0pt}{1em}{.3em}}
-\begin{array}{|c|c|c|c|}
-\hline \text{Pressure Drop } (dyne/cm^3) & \text{Radius } (cm) & v_{max} \ cm/s & \text{Re} \T \\\hline
-  46 \T & 0.65 & 121.42 & 4182.85 \\\hline
-  100 \T & 0.3 & 56.23 & 894.002 \\\hline
-\end{array}$$
+| Pressure Drop ($dyne/cm^3$)  | Radius (cm)  | $v_{max}$ cm/s |  Re |
+|---|---|---|---|
+|  46 |  0.65 | 121.42  | 4182.85  |
+|100 |  0.3 | 56.23 | 894.002 |
+
+
 
  Steady flow here is independent of time, but still dependent on radius. Wall shear stress, pressure, and volumetric flow rate are also independent of time.  Volumetric flow rate for the larger radius tube is much larger than the volumetric flow rate for the smaller radius tube, whereas wall shear stress is fairly similar for both conditions.
 
@@ -116,12 +133,11 @@ flow(a,omega,mu,rho,waves,dp_dz,mode='oscillatory',title=r'Oscillatory flow for 
  **Figure 3:** Oscillatory velocity profiles, volumetric flow rate, and wall shear stress vs. time for $\omega = \frac{2 \pi}{.8} = 7.854$, $R = 0.3 \ cm$ and $- \frac{d P}{d z} = 100 \cos( \omega) \ dynes/cm^3$ .  The smaller radius leads to a lower Womersley number of 4.328 making this profile less blunted (Table 2).
 
  **Table 2:** Womersley number for two oscillatory conditions.  Since the frequency for both conditions is the same, as well as the density and viscosity, the only value that changes and thus affects the Womersley number ($a \sqrt{\frac{\rho \omega}{\mu}}$) is the radius a.
- $$\newcommand\T{\Rule{0pt}{1em}{.3em}}
-\begin{array}{|c|c|c|}
-\hline \omega \ (rad/s) & \text{Radius } (cm) & \text{Womersley} \T \\\hline
-  7.854 \T & 0.65  & 9.377 \\\hline
-7.854 \T & 0.3 & 4.328 \\\hline
-\end{array}$$
+ |  $\omega \ (rad/s)$  | Radius ($cm$)  | Womersley |
+|---|---|---|
+|  7.854 |  0.65 | 9.377  |
+|7.854 |  0.3 | 4.328 | 
+
 
  In these two conditions of oscillatory flow, the profiles look different mostly due the difference in the radius of the tubes affecting the Womersley number of each flow.  The first condition has the highest amplitude flow rate due to the larger size of the tube. The wall shear stresses are similar orders of magnitude, but the smaller tube has larger wall shear stress.
 
@@ -132,20 +148,21 @@ flow(a,omega,mu,rho,waves,dp_dz,mode='oscillatory',title=r'Oscillatory flow for 
  Where $C_n$ and $\Phi_n$ are given by the following:
 
  **Table 3:** Coefficients and shifts for the first 10 harmonics of a typical heartbeat.
- $$\newcommand\T{\Rule{0pt}{1em}{.3em}}
-\begin{array}{|c|c|c|}
-\hline n  & C_n & \Phi_n \text{ (degrees)} \T \\\hline
-  1 \T & 7.58  & -174 \\\hline
-  2 \T & 5.41  & 89 \\\hline
-  3 \T & 1.52  & -22 \\\hline
-  4 \T & 0.52  & -34 \\\hline
-  5 \T & 0.83  & -127 \\\hline
-  6 \T & 0.69  & 135 \\\hline
-  7 \T & 0.26  & 152 \\\hline
-  8 \T & 0.54  & 44 \\\hline
-  9 \T & 0.27 & -72 \\\hline
-  10 \T & 0.10  & 11 \\\hline
-\end{array}$$
+
+
+| $n$  | $C_n$ | $\Phi_n$ (degrees)| 
+|---|---|---|
+ | 1  | 7.58  | -174 |
+ | 2  | 5.41  | 89 |
+ | 3  | 1.52  | -22 |
+ | 4  | 0.52  | -34 |
+ | 5  | 0.83  | -127 |
+ | 6  | 0.69  | 135 |
+ | 7  | 0.26  | 152 |
+ | 8  | 0.54  | 44 |
+ | 9  | 0.27 | -72 |
+ | 10 | 0.10  | 11 |
+
 
   We can visualize the first set of results with $R = .65 \ cm$, $C = 50 \ dynes/cm^3$, and $D = 10\ dynes/cm^3$
 ```python
@@ -601,7 +618,8 @@ $$\begin{aligned}
 #### Flow Rate
 
 Given the above velocity profile, we can calculate the flow rate $Q$
-with: $$\begin{aligned}
+with: 
+$$\begin{aligned}
     Q &= \int_0^a v_z(r) 2 \pi r dr\\
      &= \int_0^a \frac{a^2}{4 \mu} \left( - \frac{d p}{d z} \right) \left(1 - \left(\frac{r}{a}\right)^2 \right) 2 \pi r dr\\
      &= \frac{2 \pi a^2}{4 \mu}\left( - \frac{d p}{d z} \right)\int_0^a r - \frac{r^3}{a^2} dr\\
@@ -648,9 +666,9 @@ profile as the pressure gradient allows us to separate the $r$ and $t$
 components: $v_z(r,t) = V(r) e^{i n \omega t}$. Using this separation of
 variables we have that:
 
--   $\frac{\partial v_z}{\partial t} = i n \omega V(r) e^{i n \omega t}$
--   $\frac{\partial v_z}{\partial r} = \frac{d V(r)}{d r} e^{i n \omega t}$
--   $\frac{d}{d r} r \frac{d V(r)}{r} = \frac{d V(r)}{d r} + r \frac{d^2 V(r)}{d r}$
+-   $$\frac{\partial v_z}{\partial t} = i n \omega V(r) e^{i n \omega t}$$
+-   $$\frac{\partial v_z}{\partial r} = \frac{d V(r)}{d r} e^{i n \omega t}$$
+-   $$\frac{d}{d r} r \frac{d V(r)}{r} = \frac{d V(r)}{d r} + r \frac{d^2 V(r)}{d r}$$
 
 $$\begin{aligned}
     \rho i n \omega V(r) e^{i n \omega t}  &= -     p_o e^{i n \omega t} + \mu   \left[  \frac{d V(r)}{d r} + r \frac{d^2 V(r)}{d r}   \right] e^{i n \omega t} \\
@@ -665,7 +683,8 @@ $$\begin{aligned}
     \frac{\Lambda^2}{a^2} \frac{d^2 V(\zeta)}{d \zeta^2} + \frac{\Lambda}{a \zeta}\frac{\Lambda}{a} \frac{d V(\zeta)}{d \zeta} - \frac{i \Omega_n^2 V(\zeta)}{a^2} &= \frac{p_0}{\mu}\\
     \frac{-i \Omega_n^2}{a^2} \frac{d^2 V(\zeta)}{d \zeta^2} + \frac{-i \Omega^2}{a^2}\frac{1}{ \zeta} \frac{d V(\zeta)}{d \zeta} - \frac{i \Omega^2 V(\zeta)}{a^2} &= \frac{p_0}{\mu}\end{aligned}$$
 If we divide by $\frac{-i \Omega_n^2}{a^2}$, then separate the solution
-into homogenous and particular solutions: $$\begin{aligned}
+into homogenous and particular solutions: 
+$$\begin{aligned}
     V &= V_h + V_p\\
     0 &= \frac{d^2 V(\zeta)}{d \zeta^2} + \frac{1}{\zeta}\frac{d V(\zeta)}{d \zeta} +  V(\zeta) \ \textrm{ ($V_h$)}\\
     0 &= \zeta^2 \frac{d^2 V(\zeta)}{d \zeta^2} + \zeta\frac{d V(\zeta)}{d \zeta} +  (\zeta^2 - \alpha^2) V(\zeta)  \textrm{, Where $\alpha = 0$}\\\end{aligned}$$
@@ -674,13 +693,15 @@ solution of the form: $V_h(\zeta) = A_n J_0(\zeta) + B_n Y_0(\zeta)$,
 where $J_0$ is the 0th order Bessel function of the 1st kind, and $Y_0$
 is the 0th order Bessel function of the second kind. However,
 $Y_0(0) = -\infty$, so for the solution to be finite at the center,
-$B_n = 0$. $$\begin{aligned}
+$B_n = 0$. 
+$$\begin{aligned}
     V(\zeta) &= V_h(\zeta) + V_p(\zeta)\\
          &= A_n J_0(\zeta) + \frac{i p_o a^2}{\mu \Omega^2} \end{aligned}$$
 Our next boundary condition is that at the wall, the velocity must be 0.
 At the wall, $\zeta = \Lambda_n \frac{a}{a}$ $V(\Lambda_n) = 0$. If we
 plug in this boundary condition and then substitute $V(\zeta)$ back into
-$v_z = V(\zeta) e^{i n \omega t}$, we get: $$\begin{aligned}
+$v_z = V(\zeta) e^{i n \omega t}$, we get: 
+$$\begin{aligned}
     0 &= A_n J_0(\Lambda_n) + \frac{i p_o a^2}{\mu \Omega_n^2} \\
     A_n &= -\frac{\frac{i p_o a^2}{\mu \Omega_n^2}}{J_0(\Lambda_n)} \\
     V(\zeta) &= \frac{i p_o a^2}{\mu \Omega_n^2}\left(1 - \frac{J_0(\zeta)}{J_0(\Lambda_n)} \right)\\
@@ -693,7 +714,8 @@ $$\begin{aligned}
            &= \frac{2 \pi p_o a^2}{\mu \Omega_n^2} e^{i n \omega t} \int_0^{a} r \left(1 - \frac{J_0(\zeta)}{J_o(\Lambda)} \right) dr\end{aligned}$$
 We can substitute $r = \frac{a}{\Lambda} \zeta$ and
 $dr = \frac{a}{\Lambda} d \zeta$. We can solve this integral by using
-the identity: $\int_0^a x J_0(x) dx = a J_1(a)$ $$\begin{aligned}
+the identity: $\int_0^a x J_0(x) dx = a J_1(a)$ 
+$$\begin{aligned}
            &= \frac{2 \pi p_o a^2}{\mu \Omega_n^2} e^{i n \omega t} \frac{a^2}{\Lambda_n^2 J_0(\Lambda_n)} \int_0^{\Lambda_n} \zeta \left(J_0(\Lambda_n) - J_0(\zeta) \right) d \zeta\\
            &= \frac{2 \pi p_o a^2}{\mu \Omega_n^2} e^{i n \omega t} \frac{a^2}{\Lambda_n^2 J_0(\Lambda_n)} \left(\int_0^{\Lambda_n} \zeta J_0(\Lambda_n) - \int_0^{\Lambda_n}\zeta J_0(\zeta) d \zeta \right)\\
            &= \frac{2 \pi p_o a^2}{\mu \Omega_n^2} e^{i n \omega t} \frac{a^2}{\Lambda_n^2 J_0(\Lambda_n)} \left(\frac{\Lambda_n^2}{2} J_0(\Lambda_n) - \Lambda_n J_1(\Lambda_n) \right)\\
@@ -704,15 +726,16 @@ the identity: $\int_0^a x J_0(x) dx = a J_1(a)$ $$\begin{aligned}
 
 We can use the constitutive relation
 $\tau_{rz} = 2 \mu \frac{1}{2}\left(    \frac{\partial v_z}{\partial r}+     \frac{\partial v_r}{\partial z}\right)$,
-and the identity $\frac{d J_0(x)}{d x} = -J_1(x)$: $$\begin{aligned}
+and the identity $\frac{d J_0(x)}{d x} = -J_1(x)$: 
+$$\begin{aligned}
     \tau_n(t) &= -\mu \left(    \frac{\partial v_n(r,t)}{\partial r}\right)_{r=a} e^{i n \omega t}\\
               &= -\frac{i p_o a^2}{\Omega_n^2}\left[\frac{d}{d r}\left(1 - \frac{J_0(\zeta)}{J_0(\Lambda_n)} \right)   \right]_{r=a} e^{i n \omega t}\\
               &= -\frac{i p_o a^2}{\Omega_n^2}\frac{\Lambda_n}{a}\left[\frac{d}{d \zeta}\left(1 - \frac{J_0(\zeta)}{J_0(\Lambda_n)} \right)   \right]_{\zeta=\Lambda_n} e^{i n \omega t}\\
               &= -\frac{i p_o a^2}{\Omega_n^2}\frac{\Lambda_n}{a}\left[\left(\frac{J_1(\zeta)}{J_0(\Lambda_n)} \right)   \right]_{\zeta=\Lambda_n} e^{i n \omega t}\\
               &= -\frac{i p_o a^2}{\Omega_n^2}\frac{\Lambda_n}{a}\left(\frac{J_1(\Lambda_n)}{J_0(\Lambda_n)} \right) e^{i n \omega t}\\
               &= -\frac{p_o a}{\Lambda_n}\left(\frac{J_1(\Lambda_n)}{J_0(\Lambda_n)} \right) e^{i n \omega t}\\\end{aligned}$$
-The last simplification was made since
-$\frac{i \Lambda}{\Omega^2} = \frac{1}{\Lambda}$
+The last simplification was made since 
+$$\frac{i \Lambda}{\Omega^2} = \frac{1}{\Lambda}$$
 
 ### Pulsatile
 
