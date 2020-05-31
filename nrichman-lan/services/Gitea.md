@@ -2,8 +2,8 @@
 title: Gitea
 description: Description of my gitea instance
 published: true
-date: 2020-05-31T22:12:09.869Z
-tags: homelab, git
+date: 2020-05-31T22:13:08.126Z
+tags: git, homelab
 ---
 
 # Gitea
@@ -71,7 +71,7 @@ I set up openid-connect briefly using Keycloak (see Keycloak page) but ended up 
 
 For now, I've gotten it working, but it may break again at some point.  Keycloak setup was fairly simple when I started to understand keycloak.  I created a client in keycloak and copied the client ID and the client secret.  Under Authentication Sources in Gitea, I added an OAuth2 Authentication source with the Provider OpenID Connect and put in the client id and secret.  I also copied the auto-discovery link from the Realm Settings->General->Endpoints->OpenID Endpoint Configuration and put it into the OpenID Connect Auto Discovery URL.  In general for Keycloak this seems to be https://login.nrichman.dev/auth/realms/{realm}/.well-known/openid-configuration
 
-The redirect URI that I ended up using is the following: https://git.nrichman.dev/user/oauth2/Keycloak/callback*
+The redirect URI that I ended up using is the following: https://git.nrichman.dev/user/oauth2/{NAME}/callback*
 
 I used this because it was the redirect that I was seeing in Keycloak logs, however Keycloak was saying it wasn't listed as a valid redirect URI, so I put this in and it seemed to work.
 
