@@ -2,7 +2,7 @@
 title: Pulsatile Flow
 description: 
 published: true
-date: 2020-05-31T20:42:32.058Z
+date: 2020-05-31T20:42:41.757Z
 tags: python, simulation
 ---
 
