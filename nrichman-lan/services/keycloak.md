@@ -2,8 +2,8 @@
 title: Keycloak
 description: 
 published: true
-date: 2020-01-22T05:47:45.157Z
-tags: 
+date: 2020-05-31T22:01:26.986Z
+tags: homelab, authentication
 ---
 
 # Keycloak
@@ -29,3 +29,11 @@ The config I ended up with is as follows:
      cpu_period: 100000
      cpu_quota: 50000
 ```
+
+## Setup
+I created a realm for my website `nrichman.dev` with openid-connect and saml support
+
+Then I created clients for all the services I use, namely gitea, nextcloud, and wikijs. The openid-connect setup is much easier than the saml setup.  In general for openid, all it takes in keycloak is finding the root url, and valid redirect uri's which is usually on the clients documentation. I always set the access type to confidential.  Then in the client, I just need the client id, which is whatever I create and then I just set client authenticator to 'Client Id and Secret' and put the secret into the client.
+
+## FreeIPA Integration
+coming...
