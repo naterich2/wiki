@@ -2,7 +2,7 @@
 title: Enterprise WiFi network routed through VPN
 description: How I created an enterprise wifi network that goes out through a TorGuard VPN
 published: true
-date: 2020-06-02T20:45:29.377Z
+date: 2020-06-02T20:48:23.561Z
 tags: networking, vpn, wifi
 ---
 
@@ -36,4 +36,8 @@ The last two are important otherwise the routes will overwrite the system routin
 Finally, I added some options that were present in the downloaded config(`remote-cert-tls server;setenv CLIENT_CERT 0;tun-mtu 1500;mssfix 1550;`, checked Gateway creation IPv4 only, and saved it.
 
 ### Gateway and NAT
-I wterfaces->Interface Assignments, assign a new interface for the newly created network port ovpnc*(),
+I went to Interfaces->Interface Assignments, assign a new interface for the newly created network port ovpnc*(), and renamed it to VPN_OUT.
+
+Then I went to System->Routing->Gateways and selected the gateway that had been created, made sure it was on the correct interface (for me VPN_OUT) and gave it a name and description.  For TorGuard, the gateway doesn't seem to respond to pings, so I checked "Disable Gateway Monitoring Action" so that the gateway will show as being up.
+
+Finally, I created NAT rules for the gateway under Firewall->Nate->Outbound
