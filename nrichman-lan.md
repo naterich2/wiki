@@ -2,7 +2,7 @@
 title: nrichman.lan
 description: 
 published: true
-date: 2020-06-02T20:02:45.990Z
+date: 2020-06-02T20:07:21.712Z
 tags: 
 ---
 
@@ -11,6 +11,10 @@ tags:
 - [Overview](/nrichman-lan/overview)
 {.links-list}
 
+## Infrastructure and Networking
+
+- [Enterprise WiFi network routed through VPN](/nrichman-lan/networking/wifi_over_vpn)
+{.links-list}
 ## Services and Ansible
 
 - [Ansible Overview](/nrichman-lan/services/ansible-overview)
