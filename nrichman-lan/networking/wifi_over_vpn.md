@@ -2,11 +2,14 @@
 title: Enterprise WiFi network routed through VPN
 description: How I created an enterprise wifi network that goes out through a TorGuard VPN
 published: true
-date: 2020-06-02T20:48:23.561Z
+date: 2020-06-02T20:48:41.678Z
 tags: networking, vpn, wifi
 ---
 
 # Enterprise WiFi network routed through VPN
+
+In progress...
+
 
 I have a private VPN through [TorGuard](https://torguard.net/) which has worked really well for me.  Right now, if I want to use it, I download the openvpn configuration and use it on each computer I want.  But Openvpn is a little touchy on mobile clients sometimes, and some clients don't have an openvpn client.  
 
