@@ -2,7 +2,7 @@
 title: nrichman.lan
 description: 
 published: true
-date: 2020-06-02T19:49:22.058Z
+date: 2020-06-02T20:02:45.990Z
 tags: 
 ---
 
