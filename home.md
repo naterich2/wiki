@@ -2,7 +2,7 @@
 title: Main
 description: 
 published: true
-date: 2020-05-31T20:50:09.719Z
+date: 2020-06-02T20:04:34.463Z
 tags: 
 ---
 
@@ -30,4 +30,10 @@ The projects page is a section for larger scale projects I've undertaken, mostly
 
 
 - [Projects](/projects)
+{.links-list}
+
+## Music
+The music section is a place where I document and share music I like.  Music is really important to me and always has been.  I am often listening to music and always like to explore my boundaries.
+
+- [Music](/music)
 {.links-list}
